@@ -64,6 +64,10 @@ auto setup() -> void
 
         break;
 
+    case 'N':
+        Default::SetDefault();
+        break;
+
     default:
         Default::SetDefault();
         break;
