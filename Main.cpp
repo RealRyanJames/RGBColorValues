@@ -1,14 +1,4 @@
-#include "Headerfiles/HeaderIncludes.hpp"
-
-std::string appendTextLog(std::string logMessage, std::string titleMessage)
-{
-    return logMessage.append(titleMessage);
-}
-
-auto printMessage(std::string messageLogger) -> std::string
-{
-    return appendTextLog(messageLogger, "\n");
-}
+#include "Namespaces/FileNamespace.cpp"
 
 auto GetHexCodeRunnable(int r, int g, int b) -> void
 {
@@ -20,16 +10,18 @@ auto setup() -> void
 
     std::string title = "Welcome Users!\n";
 
+    std::ofstream fileName("main.color.txt");
+
     if (Title(title) == title)
     {
-        std::cout << appendTextLog(title, "Created by ZumbaCodez") << std::endl;
+        std::cout << FileSources::appendTextLog(title, "Created by ZumbaCodez") << std::endl;
 
         srand(time(NULL));
 
         // Gets Length of Elements in Maps Data Structure
-        float r = rand() % 254 + 1;
-        float g = rand() % 254 + 1;
-        float b = rand() % 254 + 1;
+        auto r = rand() % 254 + 1;
+        auto g = rand() % 254 + 1;
+        auto b = rand() % 254 + 1;
 
         std::map<std::string, float>
             colorsCoded = NumbersGenerated((int)r, (int)g, (int)b);
@@ -41,14 +33,19 @@ auto setup() -> void
                 std::cout << color.first << color.second << std::endl;
             }
 
-            GetHexCodeRunnable(r, g, b);
-            std::cout << printMessage("App Has Completely Ran");
+            if (fileName.is_open())
+            {
+
+                FileSources::isOpenedFile();
+                GetHexCodeRunnable(r, g, b);
+                std::cout << FileSources::printMessage("App Has Completely Ran");
+            }
         }
     }
 
     else
     {
-        std::cout << printMessage("Failed to Find Code");
+        std::cout << FileSources::printMessage("Failed to Find Code");
     }
 }
 
