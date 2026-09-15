@@ -24,6 +24,11 @@ auto printMessage(std::string messageLogger) -> std::string
     return appendTextLog(messageLogger, "\n");
 }
 
+auto GetHexCodeRunnable(int r, int g, int b) -> void
+{
+    std::cout << std::hex << r << std::hex << g << std::hex << b << std::endl;
+}
+
 auto setup() -> void
 {
 
@@ -48,6 +53,7 @@ auto setup() -> void
                 std::cout << color.first << color.second << std::endl;
             }
 
+            GetHexCodeRunnable(r, g, b);
             std::cout << printMessage("App Has Completely Ran");
         }
     }
