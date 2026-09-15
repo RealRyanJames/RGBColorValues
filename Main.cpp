@@ -14,9 +14,43 @@ namespace Default
     }
 }
 
+namespace TitleInfo
+{
+    auto get_title() -> bool
+    {
+
+        std::ofstream files("titleType.txt");
+
+        std::string output;
+
+        if (!std::filesystem::exists("titleType.txt"))
+        {
+
+            std::cerr << "Error Finding File to be Opened";
+            return bool(false);
+        }
+
+        else
+        {
+
+            files.open("titleType.txt", std::fstream::out);
+            files.close();
+        }
+
+        output = "TitleApp | v1.0";
+        std::cout << output << "\n";
+
+        std::cin.ignore(2 * 1000, '\n');
+        std::cin.clear();
+
+        return true;
+    }
+}
+
 auto setup() -> void
 {
 
+    TitleInfo::get_title();
     std::string title = "Welcome Users!\n";
 
     std::ofstream fileName("main.color.txt");
