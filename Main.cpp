@@ -5,6 +5,15 @@ auto GetHexCodeRunnable(int r, int g, int b) -> void
     std::cout << std::hex << r << std::hex << g << std::hex << b << std::endl;
 }
 
+namespace Default
+{
+
+    void SetDefault()
+    {
+        std::cout << FileSources::printMessage("Default Has Ran!") << std::endl;
+    }
+}
+
 auto setup() -> void
 {
 
@@ -12,40 +21,52 @@ auto setup() -> void
 
     std::ofstream fileName("main.color.txt");
 
-    if (Title(title) == title)
+    auto option = getchar();
+    switch (option)
     {
-        std::cout << FileSources::appendTextLog(title, "Created by ZumbaCodez") << std::endl;
+    case 'Y':
 
-        srand(time(NULL));
-
-        // Gets Length of Elements in Maps Data Structure
-        auto r = rand() % 254 + 1;
-        auto g = rand() % 254 + 1;
-        auto b = rand() % 254 + 1;
-
-        std::map<std::string, float>
-            colorsCoded = NumbersGenerated((int)r, (int)g, (int)b);
-
-        for (int i = 0; i < 1; i++)
+        if (Title(title) == title)
         {
-            for (auto color : colorsCoded)
-            {
-                std::cout << color.first << color.second << std::endl;
-            }
+            std::cout << FileSources::appendTextLog(title, "Created by ZumbaCodez") << std::endl;
 
-            if (fileName.is_open())
-            {
+            srand(time(NULL));
 
-                FileSources::isOpenedFile();
-                GetHexCodeRunnable(r, g, b);
-                std::cout << FileSources::printMessage("App Has Completely Ran");
+            // Gets Length of Elements in Maps Data Structure
+            auto r = rand() % 254 + 1;
+            auto g = rand() % 254 + 1;
+            auto b = rand() % 254 + 1;
+
+            std::map<std::string, float>
+                colorsCoded = NumbersGenerated((int)r, (int)g, (int)b);
+
+            for (int i = 0; i < 1; i++)
+            {
+                for (auto color : colorsCoded)
+                {
+                    std::cout << color.first << color.second << std::endl;
+                }
+
+                if (fileName.is_open())
+                {
+
+                    FileSources::isOpenedFile();
+                    GetHexCodeRunnable(r, g, b);
+                    std::cout << FileSources::printMessage("App Has Completely Ran");
+                }
             }
         }
-    }
 
-    else
-    {
-        std::cout << FileSources::printMessage("Failed to Find Code");
+        else
+        {
+            std::cout << FileSources::printMessage("Failed to Find Code");
+        }
+
+        break;
+
+    default:
+        Default::SetDefault();
+        break;
     }
 }
 
