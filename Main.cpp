@@ -1,18 +1,4 @@
-#include "includes.cpp"
-
-std::map<std::string, float> NumbersGenerated(float r, float g, float b)
-{
-    std::map<std::string, float> colorsCodedX;
-    colorsCodedX.insert({"B: ", b});
-    colorsCodedX.insert({"G: ", g});
-    colorsCodedX.insert({"R: ", r});
-    return colorsCodedX;
-}
-
-std::string Title(std::string str)
-{
-    return str.substr(0, str.size() + 1);
-}
+#include "Headerfiles/HeaderIncludes.hpp"
 
 std::string appendTextLog(std::string logMessage, std::string titleMessage)
 {
@@ -37,6 +23,8 @@ auto setup() -> void
     if (Title(title) == title)
     {
         std::cout << appendTextLog(title, "Created by ZumbaCodez") << std::endl;
+
+        srand(time(NULL));
 
         // Gets Length of Elements in Maps Data Structure
         float r = rand() % 254 + 1;
